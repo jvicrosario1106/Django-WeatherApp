@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+    <style>
+        
+        *{
+            padding:0;
+            margin:0;
+            box-sizing: border-box;
+            
+        }
+        body{
+            font-family: 'Source Sans Pro', sans-serif;
+            background-image: url("https://img.xda-cdn.com/DCJ1iycUAmNKPNGdcZwUw2U5uCA=/http%3A%2F%2Fuploads.tapatalk-cdn.com%2F20160227%2Fe3d71a6573e3cba3516006e01f77d955.jpg");
+            background-size: cover;
+            
+        }
+        .form-data{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+
+        }
+        input[type="search"]{
+            width:80%;
+            padding:10px;
+            border-radius: 10px 0px 10px 0px;
+            outline: none;
+            border:none;
+            border: 3px black solid;
+            font-size: 20px;
+            margin:2.5rem 0rem 2rem 0rem;
+            box-shadow: 1px 2px 1px 2px black;
+            
+        }
+        input[type="search"]:focus{
+            width:80%;
+            padding:10px;
+            border-radius: 0px 10px 0px 10px;
+            outline: none;
+            border:none;
+            border:3px sandybrown solid;
+            font-size: 20px;
+            margin:2.5rem 0rem 2rem 0rem;
+            box-shadow: 5px 2px 1px 2px black;
+            align-items: center;
+            
+        }
+        
+            
+        
+        .data-information{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+        .information{
+            display: inline-block;
+        }
+        .information .country-code{
+            background:rgba(255, 121, 121,0.7);
+            text-align: center;
+            padding:30px 50px;
+            color:white;
+            font-size: 100px;
+            border-radius: 20px;
+            margin-top: 20px;
+            font-weight: 100px;
+            box-shadow: 3px 1px 3px 2px black;
+        }
+        .information .coordinate{
+            text-align: center;
+            background-color: rgba(131, 149, 167,0.5);
+            padding:9px;
+            color:#fff;
+            border-radius: 10px;
+        }
+        .information .weather{
+            text-align: center;
+            margin:19px 0px;
+            padding:5px 20px;
+            background-color: rgba(131, 149, 167,0.5);
+            color:white;
+            font-size: 50px;
+            border-radius: 10px;
+            box-shadow: 5px 2px 1px 2px black;
+        }
+        .other-data{
+            display: grid;
+            grid-template-columns: 10px 1fr 1fr 10px;
+            grid-template-rows: 1fr 1fr;
+            place-items: center;
+            margin: 6px 0px;
+            color:white;
+            
+        }
+        .other-data .temp{
+            grid-column: 2/3;
+            grid-row: 1/2;
+            text-align: center;
+            margin: 30px 0px;
+            background-color: rgba(131, 149, 167,0.5);
+            padding:10px 65px;
+            font-size:30px;
+            border-radius: 16px;
+            box-shadow: 5px 2px 1px 2px black;
+            
+        }
+        .other-data .pressure{
+            grid-column: 3/4;
+            grid-row: 1/2;
+            text-align: center;
+            margin: 30px 0px;
+            background-color: rgba(131, 149, 167,0.5);
+            padding:10px 45px;
+            font-size:30px;
+            border-radius: 16px;
+            box-shadow: 5px 2px 1px 2px black;
+            
+        }
+        .other-data .humidity{
+            grid-column: 2/3;
+            grid-row: 2/3;
+            text-align: center;
+            margin: 30px 0px;
+            background-color: rgba(131, 149, 167,0.5);
+            padding:10px 80px;
+            font-size:30px;
+            border-radius: 16px;
+            text-transform: uppercase;     
+            box-shadow: 5px 2px 1px 2px black;
+        }
+        .other-data .wind{
+            grid-column: 3/4;
+            grid-row: 2/3;
+            text-align: center;
+            margin: 30px 0px;
+            background-color: rgba(131, 149, 167,0.5);
+            padding:10px 55px;
+            font-size:30px;
+            border-radius: 16px;
+            box-shadow: 5px 2px 1px 2px black;
+            
+        }
+        .other-data .temp-label{
+            grid-column: 2/3;
+            grid-row: 1/2;
+            margin-bottom: 100px;
+        }
+        .other-data .pres-label{
+            grid-column: 3/4;
+            grid-row: 1/2;
+            margin-bottom: 100px;
+        }
+        .other-data .hum-label{
+            grid-column: 2/3;
+            grid-row: 2/3;
+            margin-bottom: 100px;
+        }
+        .other-data .wind-label{
+            grid-column: 3/4;
+            grid-row: 2/3;
+            margin-bottom: 100px;
+        }
+    
+
+    </style>
+</head>
+
+
+<body>
+    <form method="post" class= "form-data">
+        {% csrf_token %}
+        <input type="search" name="city" placeholder="Search Your City...">
+    </form>
+    <div class="data-information">
+        <div class = "information">
+        <p class= "coordinate">Coordinates: {{coordinate}}</p>
+        <p class = "country-code">{{country_code}}</p>
+        <p class = "weather">{{weather}}</p>
+        </div>
+
+    </div>
+    <div class = "other-data">
+        <label class = "temp-label">Temperature</label>
+        <p class = "temp">{{temp}}</p>
+        <label class = "pres-label">Pressure</label>
+        <p class = "pressure">{{pressure}}</p>
+        <label class = "hum-label" >Humidity</label>
+        <p class = "humidity">{{humidity}}</p>
+        <label class = "wind-label">Wind Speed</label>
+        <p class = "wind">{{wind}}</p>
+    </div>
+</body>
+
+</html>
